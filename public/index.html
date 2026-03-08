@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CAD → FAI 报告</title>
+</head>
+<body>
+  <h2>CAD 注释文本粘贴（示例：Ø20 ±0.02; R5; 10 +0.02/-0.01）</h2>
+  <form id="f">
+    <textarea name="text" style="width:80%;height:200px"></textarea>
+    <br/>
+    <button type="submit">生成 CSV</button>
+  </form>
+  <script>
+    document.getElementById('f').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const text = e.target.text.value;
+      const resp = await fetch('/', { method: 'POST', headers: { 'Content-Type':'application/json' }, body: JSON.stringify({ text, name: 'report' }) });
+      const blob = await resp.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'report.csv';
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "name": "cad-fai-worker",
+  "version": "0.2.0",
+  "description": "CAD annotation → FAI report generator with DXF support and multi-format output",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "wrangler dev",
+    "build": "tsc",
+    "deploy": "wrangler publish",
+  "test": "echo \"No tests configured. To run project checks, run 'npm run build' or use CI build step.\""
+  },
+  "keywords": [
+    "cad",
+    "fai",
+    "tolerance",
+    "cloudflare-workers",
+    "dxf",
+    "csv",
+    "excel"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0",
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "notes": {
+    "dependencies": "exceljs 和 dxf-parser 仅在 Node.js 后端使用，Cloudflare Workers Edge Runtime 不支持",
+    "xlsx_support": "使用 CSV 格式（完全 Excel 兼容）或前端 SheetJS 库生成 .xlsx"
+  }
+}
